@@ -24,7 +24,7 @@ int Insert_Node(SCORE * head, SCORE * d)
     SCORE* newnode;
     while (prev->next) {
         if (prev->next->id > d->id) break;
-        if (prev->next->id == d->id) return -2;
+        if (prev->next->id == d->id) return -2; // 이미 동일한 id를 가진 노드가 리스트에 존재하면 -2리턴
          
         prev = prev->next;
     }
