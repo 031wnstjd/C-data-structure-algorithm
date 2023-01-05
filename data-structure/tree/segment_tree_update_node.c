@@ -24,7 +24,7 @@ void Update_New_Data(int node,int s,int e,int idx,int data)
  
     m = (s + e) / 2;
  
-    if (idx <= m) Update_New_Data(node * 2, s, m, idx, data); // s : 구간 시작 인덱스, e : 구간 끝 인덱스, idx : 수정하고자 하는 구간 노드
+    if (idx <= m) Update_New_Data(node * 2, s, m, idx, data); // s : 구간 시작 인덱스, e : 구간 끝 인덱스, idx : 수정하고자 하는 data 인덱스
     else  Update_New_Data(node * 2 + 1, m + 1, e, idx, data);
  
     tree[node] = tree[node * 2] + tree[node * 2 + 1]; // 바뀐 자식 데이터 값을 반영해서 구간 합 수정
