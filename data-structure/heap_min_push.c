@@ -19,7 +19,7 @@ int Heap_Push_Minheap(int *heap, int size, int *lastnode, int d)
 {
     int n, p;
  
-    if (*lastnode == size) return 0;
+    if (*lastnode == size) return 0; // 꽉 차 있으면 push 실패
  
     heap[++*lastnode] = d;
  
