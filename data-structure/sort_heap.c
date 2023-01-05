@@ -142,7 +142,7 @@ void Heap_Sort(int *data, int cnt, int order)
     for (i = cnt - 1; i >= 0; i--) {
         int ret;
         pop(data - 1, &lastnode, &ret);
-        data[i] = ret;
+        data[i] = ret; // heap에서 pop한 원소를 data 배열의 맨 뒤 부터 앞까지 차례대로 채움 (data 배열을 heap 공간, 정렬 결과 할당 공간으로 둘 다 이용)
     }
  
  
