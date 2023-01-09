@@ -2,59 +2,47 @@
 
 using namespace std;
 
-#define MAX_N (50000)
-#define MAX_Q (200000)
+#define MAX_N (100000)
 
-struct QUESTION {
-	int s, e, a;
-};
+int N;
+int num[MAX_N + 1];
 
-int N, Q;
-int D[MAX_N + 1];
-QUESTION q[MAX_Q];
-
-void Input_Data(void) {
-	cin >> N >> Q;
+void Input_Data() {
+	cin >> N;
 	for (int i = 1; i <= N; i++) {
-		cin >> D[i];
-	}
-	for (int i = 0; i < Q; i++) {
-		cin >> q[i].s >> q[i].e;
-	}
-
-}
-
-void Print_Result(void) {
-	for (int i = 0; i < Q; i++) {
-		cout << q[i].a << '\n';
+		cin >> num[i];
 	}
 }
 
-void Solve() {
-	// Prefix-sum 테이블 생성 : O(N)
-	for (int i = 2; i <= N; i++) {
-		D[i] += D[i - 1];
-	}
+void Solve(int &sol_smart, int &sol_fool) { // &를 통해 참조하면 변수 자체를 받을 수 있음
+	int s_smart = 0;
+	int s_fool = -10000;
 
-	// 질문의 답 생성
-	for (int i = 0; i < Q; i++) {
-		q[i].a = D[q[i].e] - D[q[i].s - 1];
+	int sum = 0;
+	for (int i = 1; i <= N; i++) {
+		if (num[i] > 0) s_smart += num[i]; // 똑똑한 다람쥐는 양수일 때만 합
+		sum += num[i];
+		if (s_fool < sum) s_fool = sum;
+		if (sum < 0) sum = 0; // 구간의 합이 음수면 다음 지점부터 구간을 다시 시작
 	}
+	if (s_smart == 0) s_smart = s_fool; // 양수일 때가 없으면 멍청한 다람쥐의 결과값(음수 중 최댓값)을 대입
+
+	sol_smart = s_smart;
+	sol_fool = s_fool;
 }
-
-
-
 
 int main(void) {
-//	ios_base::sync_with_stdio(false);
-//	cin.tie(nullptr);
-//	cout.tie(nullptr);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	Input_Data();
 
-	Solve();
+	int sol_smart, sol_fool;
 
-	Print_Result();
-	   	 
+	Solve(sol_smart, sol_fool);
+
+	cout << sol_fool << " " << sol_smart << '\n';
+
 	return 0;
 }
