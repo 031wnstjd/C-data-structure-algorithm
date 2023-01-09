@@ -1,6 +1,4 @@
-/**
-	백준 3078 좋은친구 
-*/
+/* 백준 3078 좋은친구 */
 
 #include <iostream>
 #include <string>
