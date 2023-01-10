@@ -31,12 +31,16 @@ void main(void)
  
 int Query_Lazy(int node,int s,int e,int qs,int qe)
 {
-    int m;
+    int m,l,r;
     Propagate(node, s, e); // propagtion 진행 추가
  
     if (qs <= s && e <= qe) return tree[node];
     if (e < qs || qe < s) return 0;
  
     m = (s + e) / 2;
-    return Query_Lazy(node * 2, s, m, qs, qe) + Query_Lazy(node * 2 + 1, m + 1, e, qs, qe);
+     
+    l = Query_Lazy(node * 2, s, m, qs, qe);
+    r = Query_Lazy(node * 2+1, m+1, e, qs, qe);
+ 
+    return l + r;
 }
