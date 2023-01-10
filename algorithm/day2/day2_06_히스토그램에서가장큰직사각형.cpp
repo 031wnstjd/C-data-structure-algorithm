@@ -33,7 +33,7 @@ long long Solve() {
 			stack.pop_back();
 			
 			if(stack.empty()) width = i; 
-			else width = i - stack.back() - 1; // i - h_idx로 하면 안 됨 
+			else width = i - stack.back() - 1; // i - h_idx로 하면 안 됨 (반례 : 높이가 2 4 5 5 3 1인 경우, 마지막 1이 들어올 때 문제 발생) 
 			
 			res = H[h_idx] * width > res ? H[h_idx] * width : res; // 넓이 최댓값 갱신  
 		}
